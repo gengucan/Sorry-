@@ -12,12 +12,6 @@ isGameStart state = p1 == [17,17] && p2 == [84,84]
     p1 = player1Pieces state
     p2 = player2Pieces state
 
--- !!!
-changeIfStart :: PlayerState -> Picture
-changeIfStart playerState
-  | isGameStart playerState = color red filledSquare -- fix this
-  | otherwise = color black outlinedSquare
-
 -- Function to render text in a specific cell of the grid
 renderTextInCell :: Int -> Int -> String -> Color -> Picture
 renderTextInCell x y txt clr =
@@ -28,12 +22,12 @@ renderTextInCell x y txt clr =
     text txt
 
 -- take in cell; needs to account for overlap? - do we trigger the overlap check here?
-updateCellColor :: ([Int],[Int]) -> Picture 
-updateCellColor cell
+updateCellColor :: ([Int],[Int]) -> Int -> Int -> Picture 
+updateCellColor cell x y
   | cell !! 1 !! 1 != 0 = color playerOneColor filledSquare
-    if cell !! 1 !! 1 == 1 then renderTextInCell -- x y -- "1" playerOneColor else renderTextInCell x y "2" playerOneColor
+    if cell !! 1 !! 1 == 1 then renderTextInCell x y "1" playerOneColor else renderTextInCell x y "2" playerOneColor
   | cell !! 2 !! 1 != 0 = color playerTwoColor filledSquare
-    if cell !! 2 !! 1 == 1 then renderTextInCell -- x y -- "1" playerTwoColor else renderTextInCell x y -- "2" playerTwoColor
+    if cell !! 2 !! 1 == 1 then renderTextInCell x y "1" playerTwoColor else renderTextInCell x y "2" playerTwoColor
   | otherwise = color lightBlack outlinedSquare
 
 -- Define the game board grid
@@ -42,8 +36,7 @@ gridPicture gameState playerState = pictures
   [ -- Draw the grid
     translate (-100) (-250 + 25) $ pictures
       [ translate (fromIntegral x * cellWidth) (fromIntegral y * cellWidth) $
-            updateCellColor (currentState !! y !! x)
-          , changeIfStart playerState
+            updateCellColor (currentState !! y !! x) y x
           , translate ((-cellWidth/2) + 50 * fromIntegral x) (10 + 50 * fromIntegral y) $ scale 0.1 0.1
       ]
         | x <- [0..gridSize-1], y <- [0..gridSize-1]
