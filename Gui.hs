@@ -24,13 +24,13 @@ renderTextInCell x y txt clr =
 
 -- take in cell; needs to account for overlap? - do we trigger the overlap check here?
 updateCellColor :: ([Int],[Int]) -> Int -> Int -> Picture 
-updateCellColor cell x y
-  | cell !! 1 !! 1 /= 0 = 
-    if (cell !! 1 !! 1) == 1 
+updateCellColor (cell1, cell2) x y
+  | cell1 !! 1 /= 0 = 
+    if (cell1 !! 1) == 1 
       then color C.playerOneColor C.filledSquare 
       else renderTextInCell x y "2" C.playerOneColor
-  | cell !! 2 !! 1 /= 0 = 
-    if (cell !! 2 !! 1) == 1 
+  | cell2 !! 1 /= 0 = 
+    if (cell2 !! 1) == 1 
       then color C.playerTwoColor C.filledSquare 
       else renderTextInCell x y "2" C.playerTwoColor
   | otherwise = color C.lightBlack C.outlinedSquare
@@ -42,7 +42,7 @@ gridPicture gameState playerState = pictures
     translate (-100) (-250 + 25) $ pictures
       [ translate (fromIntegral x * C.cellWidth) (fromIntegral y * C.cellWidth) $
             updateCellColor (currentState !! y !! x) y x
-          , translate ((-C.cellWidth/2) + 50 * fromIntegral x) (10 + 50 * fromIntegral y) $ scale 0.1 0.1
+          , translate ((-C.cellWidth/2) + 50 * fromIntegral x) (10 + 50 * fromIntegral y) $ scale 0.1 0.1 $ text ""
       ]
         | x <- [0..C.gridSize-1], y <- [0..C.gridSize-1]
   ]

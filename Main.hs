@@ -1,18 +1,18 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Redundant if" #-}
 module Main where
 
 import Graphics.Gloss
 import Graphics.Gloss.Interface.IO.Game
-import System.Random ( randomRIO )
+import System.Random (randomRIO)
 import Data.List
 import Constants
-import GHC.IO
 import GameLogic
 import Gui
 import GameData
+import GHC.IO
 
 -- Handles user input based on the coordinates of their mouse
--- If mouse coordinates lie within the bounds of a button image, handle button event:
-  -- The Roll button updates the player state and game state
 handleEvent :: Event -> (PlayerState, GameState) -> (PlayerState, GameState)
 handleEvent (EventKey (MouseButton LeftButton) Down _ (x, y)) (playerState, gameState)
   | buttonClickedRoll (round x, round y) = (playerState', gameState')
