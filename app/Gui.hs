@@ -22,17 +22,16 @@ renderTextInCell x y txt clr =
     color clr $ -- Set text color - need to set to match the player
     text txt
 
--- take in cell; needs to account for overlap? - do we trigger the overlap check here?
+-- Take in a cell and update its color depending on the token(s) present
 updateCellColor :: ([Int],[Int]) -> Int -> Int -> Picture 
 updateCellColor (cell1, cell2) x y
-  | cell1 !! 1 /= 0 = 
-    if (cell1 !! 1) == 1 
-      then color C.playerOneColor C.filledSquare 
-      else renderTextInCell x y "2" C.playerOneColor
-  | cell2 !! 1 /= 0 = 
-    if (cell2 !! 1) == 1 
-      then color C.playerTwoColor C.filledSquare 
-      else renderTextInCell x y "2" C.playerTwoColor
+  | length cell1 < 1 && length cell2 < 1 = color C.lightBlack C.outlinedSquare
+  | length cell1 == 1 && length cell2 < 1 = if cell1 !! 1 == 1
+                                             then renderTextInCell x y "1" C.playerOneColor -- color C.playerOneColor C.filledSquare 
+                                             else renderTextInCell x y "2" C.playerOneColor
+  | length cell1 < 1 && length cell2 == 1 = if cell2 !! 1 == 1
+                                             then renderTextInCell x y "1" C.playerTwoColor -- color C.playerTwoColor C.filledSquare 
+                                             else renderTextInCell x y "2" C.playerTwoColor
   | otherwise = color C.lightBlack C.outlinedSquare
 
 -- Define the game board grid
