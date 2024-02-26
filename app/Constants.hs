@@ -39,7 +39,7 @@ rollButtonHeight1 :: Int
 rollButtonHeight1 = 100
 
 rollButtonLeft1 :: Int
-rollButtonLeft1 = -450 -- was -350
+rollButtonLeft1 = -350
 
 rollButtonRight1 :: Int
 rollButtonRight1 = rollButtonLeft1 + rollButtonWidth1
@@ -58,20 +58,23 @@ rollButtonHeight2 :: Int
 rollButtonHeight2 = 100
 
 rollButtonLeft2 :: Int
-rollButtonLeft2 = -250
+rollButtonLeft2 = -300
 
 rollButtonRight2 :: Int
 rollButtonRight2 = rollButtonLeft2 + rollButtonWidth2
 
 rollButtonBottom2 :: Int
-rollButtonBottom2 = 100
+rollButtonBottom2 = 15
 
 rollButtonTop2 :: Int
 rollButtonTop2 = rollButtonBottom2 + rollButtonHeight2
 
 -- -- The text displayed in the roll button
-rollButtonText :: String
-rollButtonText = "Press to Roll"
+rollButtonText1 :: String
+rollButtonText1 = "Press to Roll 1"
+
+rollButtonText2 :: String
+rollButtonText2 = "Press to Roll 2"
 
 -- -- Color representing player one
 playerOneColor :: Color

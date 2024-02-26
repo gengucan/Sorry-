@@ -58,13 +58,13 @@ changeButtonColor playerState
 rollButtonPicture1 :: PlayerState -> Picture
 rollButtonPicture1 state = Pictures [
     Translate (-250) 150 $ color (changeButtonColor state) $ rectangleSolid  (fromIntegral C.rollButtonWidth1) (fromIntegral C.rollButtonHeight1),
-    Translate (-328) 138 $ Scale 0.18 0.18 $ Text C.rollButtonText
+    Translate (-340) 138 $ Scale 0.18 0.18 $ Text C.rollButtonText1
     ]
 
 rollButtonPicture2 :: PlayerState -> Picture
 rollButtonPicture2 state = Pictures [
-    Translate (-50) 150 $ color (changeButtonColor state) $ rectangleSolid  (fromIntegral C.rollButtonWidth2) (fromIntegral C.rollButtonHeight2),
-    Translate (-328) 138 $ Scale 0.18 0.18 $ Text C.rollButtonText
+    Translate (-250) 40 $ color (changeButtonColor state) $ rectangleSolid  (fromIntegral C.rollButtonWidth2) (fromIntegral C.rollButtonHeight2),
+    Translate (-340) 35 $ Scale 0.18 0.18 $ Text C.rollButtonText2
     ]
 
 -- Define the "Number Rolled" screen text
