@@ -25,7 +25,7 @@ renderTextInCell x y txt clr =
 
 -- Take in a cell and update its color depending on the token(s) present
 updateCellColor :: ([Int],[Int]) -> Int -> Int -> Picture 
-updateCellColor (cell1, cell2) x y
+updateCellColor (cell1, cell2) x y 
   | length cell1 < 1 && length cell2 < 1 = color C.lightBlack C.outlinedSquare -- 
   | length cell1 == 1 && length cell2 < 1 = if cell1 !! 0 == 1
                                              then renderTextInCell x y "2" C.playerOneColor -- color C.playerOneColor C.filledSquare 
@@ -111,12 +111,20 @@ declareWinner state
   | otherwise = Translate (-50) 25 $ Scale 0.3 0.3  $ Text "Blue Wins!"
   where
     winner = gameOver state
+
+renderStartSquare1 :: Picture
+renderStartSquare1 = Translate (40) (170) $ Scale 0.1 0.1 $ Text st
+  where st = "Start"
+
+renderStartSquare2 :: Picture
+renderStartSquare2 = Translate (190) (-180) $ Scale 0.1 0.1 $ Text st
+  where st = "Start"
     
 -- Render the gameboard's components
 render :: (PlayerState, GameState) -> Picture
 render (playerState, gameState)
     | isGameOver gameState = Pictures [renderWinningScreen gameState, winnerText]
-    | otherwise = Pictures [grid, rollButton1, rollButton2, result, resultText]
+    | otherwise = Pictures [grid, renderStartSquare1, renderStartSquare2, rollButton1, rollButton2, result, resultText]
     where
         grid = gridPicture (updateGameState playerState gameState) playerState
         rollButton1 = rollButtonPicture1 playerState
