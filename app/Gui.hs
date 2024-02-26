@@ -2,6 +2,7 @@ module Gui where
 
 --import qualified Data.Map as Map
 import Graphics.Gloss
+import GameLogic
 import qualified Constants as C
 import GameData
 
@@ -16,7 +17,7 @@ isGameStart state = p1 == [17,17] && p2 == [84,84]
 -- Function to render text in a specific cell of the grid
 renderTextInCell :: Int -> Int -> String -> Color -> Picture
 renderTextInCell x y txt clr =
-    translate (fromIntegral y * C.cellWidth) (fromIntegral x * C.cellWidth) $
+    translate (0) (0) $
     --translate (-C.cellWidth / 2) (-C.cellWidth / 2) $ -- Adjust for centering the text
     scale 0.1 0.1 $
     color clr $
@@ -27,13 +28,13 @@ updateCellColor :: ([Int],[Int]) -> Int -> Int -> Picture
 updateCellColor (cell1, cell2) x y
   | length cell1 < 1 && length cell2 < 1 = color C.lightBlack C.outlinedSquare -- 
   | length cell1 == 1 && length cell2 < 1 = if cell1 !! 0 == 1
-                                             then renderTextInCell y x "2" C.playerOneColor -- color C.playerOneColor C.filledSquare 
-                                             else renderTextInCell y x "1" C.playerOneColor
+                                             then renderTextInCell x y "2" C.playerOneColor -- color C.playerOneColor C.filledSquare 
+                                             else renderTextInCell x y "1" C.playerOneColor
   | length cell1 < 1 && length cell2 == 1 = if cell2 !! 0 == 1
-                                             then renderTextInCell y x "2" C.playerTwoColor -- color C.playerTwoColor C.filledSquare 
-                                             else renderTextInCell y x "1" C.playerTwoColor
-  | length cell1 == 2 = renderTextInCell y x "1 | 2" C.playerOneColor
-  | length cell2 == 2 = renderTextInCell y x "1 | 2" C.playerTwoColor
+                                             then renderTextInCell x y "2" C.playerTwoColor -- color C.playerTwoColor C.filledSquare 
+                                             else renderTextInCell x y "1" C.playerTwoColor
+  | length cell1 == 2 = renderTextInCell x y "1 | 2" C.playerOneColor
+  | length cell2 == 2 = renderTextInCell x y "1 | 2" C.playerTwoColor
   | otherwise = color C.lightBlack C.outlinedSquare
 
 -- Define the game board grid
@@ -42,8 +43,8 @@ gridPicture gameState playerState = pictures
   [ -- Draw the grid
     translate (-100) (-250 + 25) $ pictures
       [ translate (fromIntegral x * C.cellWidth) (fromIntegral y * C.cellWidth) $
-            updateCellColor (currentState !! y !! x) y x
-          , translate ((-C.cellWidth/2) + 50 * fromIntegral x) (10 + 50 * fromIntegral y) $ scale 0.1 0.1 $ text ""
+            updateCellColor (currentState !! y !! x) x y
+          
       ]
         | x <- [0..C.gridSize-1], y <- [0..C.gridSize-1]
   ]
@@ -117,7 +118,7 @@ render (playerState, gameState)
     | isGameOver gameState = Pictures [renderWinningScreen gameState, winnerText]
     | otherwise = Pictures [grid, rollButton1, rollButton2, result, resultText]
     where
-        grid = gridPicture gameState playerState
+        grid = gridPicture (updateGameState playerState gameState) playerState
         rollButton1 = rollButtonPicture1 playerState
         rollButton2 = rollButtonPicture2 playerState
         result = rollResultBox playerState
