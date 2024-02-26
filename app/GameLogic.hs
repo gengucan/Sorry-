@@ -36,8 +36,8 @@ updateGameState :: PlayerState -> GameState -> GameState
 updateGameState (PlayerState {turn = t, player1Pieces = p1, player2Pieces = p2}) (GameState {grid = g, gameOver = o}) =
     let grid = replicate gridSize $ replicate gridSize ([], [])
         updatedGrid = [[piecesAt x y p1 p2
-                        | y <- [0..gridSize-1]]
                         | x <- [0..gridSize-1]]
+                        | y <- [0..gridSize-1]]
         gameOver1 = foldr (\ place boolAcc -> (place == 40) && boolAcc) True p1
         gameOver2 = foldr (\ place boolAcc -> (place == 40) && boolAcc) True p2
         gameOver' = if gameOver1 then 1 else if gameOver2 then 2 else 0
