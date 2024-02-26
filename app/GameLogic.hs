@@ -24,11 +24,11 @@ updatePlayerState (PlayerState {turn = t, player1Pieces = p1, player2Pieces = p2
     if t == 1
         then if (p1!!pieceToMove +d) <= 40
             then return PlayerState{turn = 2, player1Pieces = (addAt pieceToMove d p1) , player2Pieces = p2, diceRoll = d}
-                else return PlayerState{turn = t, player1Pieces = p1 , player2Pieces = p2, diceRoll = d}
+                else return PlayerState{turn = 2, player1Pieces = p1 , player2Pieces = p2, diceRoll = d}
         else if t == 2
             then if (p2!!pieceToMove + d) <= 40
                 then return PlayerState{turn = 1, player1Pieces = p1 , player2Pieces = (addAt pieceToMove d p2), diceRoll = d}
-                    else return PlayerState{turn = t, player1Pieces = p1 , player2Pieces = p2, diceRoll = d}
+                    else return PlayerState{turn = 1, player1Pieces = p1 , player2Pieces = p2, diceRoll = d}
             else return PlayerState{turn = t, player1Pieces = p1, player2Pieces = p2, diceRoll = d}
 
 -- Updates the state of the game based on the player states
