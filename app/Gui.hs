@@ -26,10 +26,10 @@ renderTextInCell x y txt clr =
 updateCellColor :: ([Int],[Int]) -> Int -> Int -> Picture 
 updateCellColor (cell1, cell2) x y
   | length cell1 < 1 && length cell2 < 1 = color C.lightBlack C.outlinedSquare
-  | length cell1 == 1 && length cell2 < 1 = if cell1 !! 1 == 1
+  | length cell1 == 1 && length cell2 < 1 = if cell1 !! 0 == 1
                                              then renderTextInCell x y "1" C.playerOneColor -- color C.playerOneColor C.filledSquare 
                                              else renderTextInCell x y "2" C.playerOneColor
-  | length cell1 < 1 && length cell2 == 1 = if cell2 !! 1 == 1
+  | length cell1 < 1 && length cell2 == 1 = if cell2 !! 0 == 1
                                              then renderTextInCell x y "1" C.playerTwoColor -- color C.playerTwoColor C.filledSquare 
                                              else renderTextInCell x y "2" C.playerTwoColor
   | otherwise = color C.lightBlack C.outlinedSquare

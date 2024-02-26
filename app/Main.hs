@@ -17,11 +17,11 @@ handleEvent :: Event -> (PlayerState, GameState) -> (PlayerState, GameState)
 handleEvent (EventKey (MouseButton LeftButton) Down _ (x, y)) (playerState, gameState)
   | buttonClickedRoll1 (round x, round y) = (playerState'1, gameState'1)
   | buttonClickedRoll2 (round x, round y) = (playerState'2, gameState'2)
-  | otherwise = (playerState, gameState)
+  | otherwise =  (playerState, gameState)
   where 
-    playerState'1 = unsafePerformIO $ updatePlayerState playerState 1
-    playerState'2 = unsafePerformIO $ updatePlayerState playerState 2
-    gameState'1 = updateGameState playerState'1 gameState
+    playerState'1 = unsafePerformIO $ updatePlayerState playerState 0
+    playerState'2 = unsafePerformIO $ updatePlayerState playerState 1
+    gameState'1 =  updateGameState playerState'1 gameState
     gameState'2 = updateGameState playerState'2 gameState
     buttonClickedRoll1 (x', y') = x' > rollLeft1 && x' < rollRight1 && y' > rollBottom1 && y' < rollTop1
     buttonClickedRoll2 (x', y') = x' > rollLeft2 && x' < rollRight2 && y' > rollBottom2 && y' < rollTop2
