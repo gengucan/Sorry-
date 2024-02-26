@@ -119,12 +119,36 @@ renderStartSquare1 = Translate (40) (170) $ Scale 0.1 0.1 $ Text st
 renderStartSquare2 :: Picture
 renderStartSquare2 = Translate (190) (-180) $ Scale 0.1 0.1 $ Text st
   where st = "Start"
+
+renderE :: Picture
+renderE = Translate (240) (-60) $ Scale 0.3 0.3 $ Text e
+  where e = "E"
+
+renderN :: Picture
+renderN = Translate (240) (-135) $ Scale 0.3 0.3 $ Text e
+  where e = "N"
+
+renderD :: Picture
+renderD = Translate (240) (-215) $ Scale 0.3 0.3 $ Text e
+  where e = "D"
+
+renderE1 :: Picture
+renderE1 = Translate (-20) (165) $ Scale 0.3 0.3 $ Text e
+  where e = "E"
+
+renderN1 :: Picture
+renderN1 = Translate (-20) (100) $ Scale 0.3 0.3 $ Text e
+  where e = "N"
+
+renderD1 :: Picture
+renderD1 = Translate (-20) (30) $ Scale 0.3 0.3 $ Text e
+  where e = "D"
     
 -- Render the gameboard's components
 render :: (PlayerState, GameState) -> Picture
 render (playerState, gameState)
     | isGameOver gameState = Pictures [renderWinningScreen gameState, winnerText]
-    | otherwise = Pictures [grid, renderStartSquare1, renderStartSquare2, rollButton1, rollButton2, result, resultText]
+    | otherwise = Pictures [grid, renderStartSquare1, renderStartSquare2, renderE, renderN, renderD, renderE1, renderD1, renderN1, rollButton1, rollButton2, result, resultText]
     where
         grid = gridPicture (updateGameState playerState gameState) playerState
         rollButton1 = rollButtonPicture1 playerState
