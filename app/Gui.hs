@@ -32,7 +32,9 @@ updateCellColor (cell1, cell2) x y
   | length cell1 < 1 && length cell2 == 1 = if cell2 !! 0 == 1
                                              then renderTextInCell y x "2" C.playerTwoColor -- color C.playerTwoColor C.filledSquare 
                                              else renderTextInCell y x "1" C.playerTwoColor
-  | otherwise = color C.lightBlack C.outlinedSquare -- 
+  | length cell1 == 2 = renderTextInCell y x "1 | 2" C.playerOneColor
+  | length cell2 == 2 = renderTextInCell y x "1 | 2" C.playerTwoColor
+  | otherwise = color C.lightBlack C.outlinedSquare
 
 -- Define the game board grid
 gridPicture :: GameState -> PlayerState -> Picture
