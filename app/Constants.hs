@@ -32,23 +32,42 @@ outlinedSquare :: Picture
 outlinedSquare = rectangleWire cellWidth cellWidth
 
 -- -- RollButton
-rollButtonWidth :: Int
-rollButtonWidth = 200
+rollButtonWidth1 :: Int
+rollButtonWidth1 = 200
 
-rollButtonHeight :: Int
-rollButtonHeight = 100
+rollButtonHeight1 :: Int
+rollButtonHeight1 = 100
 
-rollButtonLeft :: Int
-rollButtonLeft = -350
+rollButtonLeft1 :: Int
+rollButtonLeft1 = -450 -- was -350
 
-rollButtonRight :: Int
-rollButtonRight = rollButtonLeft + rollButtonWidth
+rollButtonRight1 :: Int
+rollButtonRight1 = rollButtonLeft1 + rollButtonWidth1
 
-rollButtonBottom :: Int
-rollButtonBottom = 100
+rollButtonBottom1 :: Int
+rollButtonBottom1 = 100
 
-rollButtonTop :: Int
-rollButtonTop = rollButtonBottom + rollButtonHeight
+rollButtonTop1 :: Int
+rollButtonTop1 = rollButtonBottom1 + rollButtonHeight1
+
+--
+rollButtonWidth2 :: Int
+rollButtonWidth2 = 200
+
+rollButtonHeight2 :: Int
+rollButtonHeight2 = 100
+
+rollButtonLeft2 :: Int
+rollButtonLeft2 = -250
+
+rollButtonRight2 :: Int
+rollButtonRight2 = rollButtonLeft2 + rollButtonWidth2
+
+rollButtonBottom2 :: Int
+rollButtonBottom2 = 100
+
+rollButtonTop2 :: Int
+rollButtonTop2 = rollButtonBottom2 + rollButtonHeight2
 
 -- -- The text displayed in the roll button
 rollButtonText :: String

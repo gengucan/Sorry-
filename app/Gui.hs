@@ -56,9 +56,15 @@ changeButtonColor playerState
   | otherwise = C.playerTwoColor
 
 -- Define the roll button picture
-rollButtonPicture :: PlayerState -> Picture
-rollButtonPicture state = Pictures [
-    Translate (-250) 150 $ color (changeButtonColor state) $ rectangleSolid  (fromIntegral C.rollButtonWidth) (fromIntegral C.rollButtonHeight),
+rollButtonPicture1 :: PlayerState -> Picture
+rollButtonPicture1 state = Pictures [
+    Translate (-250) 150 $ color (changeButtonColor state) $ rectangleSolid  (fromIntegral C.rollButtonWidth1) (fromIntegral C.rollButtonHeight1),
+    Translate (-328) 138 $ Scale 0.18 0.18 $ Text C.rollButtonText
+    ]
+
+rollButtonPicture2 :: PlayerState -> Picture
+rollButtonPicture2 state = Pictures [
+    Translate (-50) 150 $ color (changeButtonColor state) $ rectangleSolid  (fromIntegral C.rollButtonWidth2) (fromIntegral C.rollButtonHeight2),
     Translate (-328) 138 $ Scale 0.18 0.18 $ Text C.rollButtonText
     ]
 
@@ -108,10 +114,11 @@ declareWinner state
 render :: (PlayerState, GameState) -> Picture
 render (playerState, gameState)
     | isGameOver gameState = Pictures [renderWinningScreen gameState, winnerText]
-    | otherwise = Pictures [grid, rollButton, result, resultText]
+    | otherwise = Pictures [grid, rollButton1, rollButton2, result, resultText]
     where
         grid = gridPicture gameState playerState
-        rollButton = rollButtonPicture playerState
+        rollButton1 = rollButtonPicture1 playerState
+        rollButton2 = rollButtonPicture2 playerState
         result = rollResultBox playerState
         resultText = rollResultText
         winnerText = declareWinner gameState
