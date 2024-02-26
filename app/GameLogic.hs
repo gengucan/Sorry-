@@ -23,11 +23,11 @@ updatePlayerState (PlayerState {turn = t, player1Pieces = p1, player2Pieces = p2
     d <- randomRIO (1, 6)
     if t == 1
         then if (p1!!pieceToMove +d) <= 40
-            then return PlayerState{turn = 2, player1Pieces = (addAt pieceToMove d p1) , player2Pieces = p2, diceRoll = d}
+            then return PlayerState{turn = 2, player1Pieces = (addAt pieceToMove d p1) , player2Pieces = map (\a -> if (player2Path!!a ==(player1Path!!(p1!!pieceToMove +d))) then 0 else a ) p2, diceRoll = d}
                 else return PlayerState{turn = 2, player1Pieces = p1 , player2Pieces = p2, diceRoll = d}
         else if t == 2
             then if (p2!!pieceToMove + d) <= 40
-                then return PlayerState{turn = 1, player1Pieces = p1 , player2Pieces = (addAt pieceToMove d p2), diceRoll = d}
+                then return PlayerState{turn = 1, player1Pieces = map (\a -> if (player1Path!!a ==(player2Path!!(p2!!pieceToMove +d))) then 0 else a ) p1 , player2Pieces = (addAt pieceToMove d p2), diceRoll = d}
                     else return PlayerState{turn = 1, player1Pieces = p1 , player2Pieces = p2, diceRoll = d}
             else return PlayerState{turn = t, player1Pieces = p1, player2Pieces = p2, diceRoll = d}
 
