@@ -6,6 +6,9 @@ import GameLogic
 import qualified Constants as C
 import GameData
 
+-- Kept structure from code linked in wiki; altered board GUI to accomodate our game (multiple tokens, start and end boxes, etc.)
+--                                          also made changes to the Player and PlayerState 
+
 -- Determine if the game has just started
 -- Return true if yes, false otherwise
 isGameStart :: PlayerState -> Bool
@@ -28,10 +31,10 @@ updateCellColor :: ([Int],[Int]) -> Int -> Int -> Picture
 updateCellColor (cell1, cell2) x y 
   | length cell1 < 1 && length cell2 < 1 = color C.lightBlack C.outlinedSquare -- 
   | length cell1 == 1 && length cell2 < 1 = if cell1 !! 0 == 1
-                                             then renderTextInCell x y "2" C.playerOneColor -- color C.playerOneColor C.filledSquare 
+                                             then renderTextInCell x y "2" C.playerOneColor 
                                              else renderTextInCell x y "1" C.playerOneColor
   | length cell1 < 1 && length cell2 == 1 = if cell2 !! 0 == 1
-                                             then renderTextInCell x y "2" C.playerTwoColor -- color C.playerTwoColor C.filledSquare 
+                                             then renderTextInCell x y "2" C.playerTwoColor
                                              else renderTextInCell x y "1" C.playerTwoColor
   | length cell1 == 2 = renderTextInCell x y "1 | 2" C.playerOneColor
   | length cell2 == 2 = renderTextInCell x y "1 | 2" C.playerTwoColor
@@ -44,7 +47,6 @@ gridPicture gameState playerState = pictures
     translate (-100) (-250 + 25) $ pictures
       [ translate (fromIntegral x * C.cellWidth) (fromIntegral y * C.cellWidth) $
             updateCellColor (currentState !! y !! x) x y
-          
       ]
         | x <- [0..C.gridSize-1], y <- [0..C.gridSize-1]
   ]
@@ -57,13 +59,14 @@ changeButtonColor playerState
   | turn playerState  == 1 = C.playerOneColor
   | otherwise = C.playerTwoColor
 
--- Define the roll button picture
+-- Define the roll button picture (for rolling token 1)
 rollButtonPicture1 :: PlayerState -> Picture
 rollButtonPicture1 state = Pictures [
     Translate (-250) 150 $ color (changeButtonColor state) $ rectangleSolid  (fromIntegral C.rollButtonWidth1) (fromIntegral C.rollButtonHeight1),
     Translate (-340) 138 $ Scale 0.18 0.18 $ Text C.rollButtonText1
     ]
 
+-- Define the roll button picture (for rolling token 2)
 rollButtonPicture2 :: PlayerState -> Picture
 rollButtonPicture2 state = Pictures [
     Translate (-250) 40 $ color (changeButtonColor state) $ rectangleSolid  (fromIntegral C.rollButtonWidth2) (fromIntegral C.rollButtonHeight2),
@@ -112,34 +115,42 @@ declareWinner state
   where
     winner = gameOver state
 
+-- Render text inside grid to note start cell
 renderStartSquare1 :: Picture
 renderStartSquare1 = Translate (40) (170) $ Scale 0.1 0.1 $ Text st
   where st = "Start"
 
+-- Render text inside grid to note start cell
 renderStartSquare2 :: Picture
 renderStartSquare2 = Translate (190) (-180) $ Scale 0.1 0.1 $ Text st
   where st = "Start"
 
+-- Render text inside grid to note end cells
 renderE :: Picture
 renderE = Translate (240) (-60) $ Scale 0.3 0.3 $ Text e
   where e = "E"
 
+-- Render text inside grid to note end cells
 renderN :: Picture
 renderN = Translate (240) (-135) $ Scale 0.3 0.3 $ Text e
   where e = "N"
 
+-- Render text inside grid to note end cells
 renderD :: Picture
 renderD = Translate (240) (-215) $ Scale 0.3 0.3 $ Text e
   where e = "D"
 
+-- Render text inside grid to note end cells
 renderE1 :: Picture
 renderE1 = Translate (-20) (165) $ Scale 0.3 0.3 $ Text e
   where e = "E"
 
+-- Render text inside grid to note end cells
 renderN1 :: Picture
 renderN1 = Translate (-20) (100) $ Scale 0.3 0.3 $ Text e
   where e = "N"
 
+-- Render text inside grid to note end cells
 renderD1 :: Picture
 renderD1 = Translate (-20) (30) $ Scale 0.3 0.3 $ Text e
   where e = "D"
