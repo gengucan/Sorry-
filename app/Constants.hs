@@ -3,7 +3,7 @@ module Constants where
 import Graphics.Gloss
 import Graphics.Gloss.Data.Color
 
--- Added second roll button as well as Player paths to existing code linked in the wiki
+-- Added second roll button as well as Player paths to existing code linked in the wiki (https://github.com/svolterra/SnakesandLadders)
 
 -- -- Define the screen width of the game window
 screenWidth :: Int 
