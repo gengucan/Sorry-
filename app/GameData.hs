@@ -3,6 +3,8 @@ module GameData where
 import Constants
 import qualified Control.Applicative as Map
 
+-- Used structure from code linked in wiki; altered to fit our game
+
 -- Define the game state data type
 -- grid stores pairs of Booleans representing each player's presence at a certain cell
 -- gameOver is 1 if the game is over and player 1 won
