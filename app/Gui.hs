@@ -7,7 +7,7 @@ import qualified Constants as C
 import GameData
 
 -- Kept structure from code linked in wiki; altered board GUI to accomodate our game (multiple tokens, start and end boxes, etc.)
---                                          also made changes to the Player and PlayerState 
+--                                          also made changes to the Player and PlayerState (https://github.com/svolterra/SnakesandLadders)
 
 -- Determine if the game has just started
 -- Return true if yes, false otherwise
