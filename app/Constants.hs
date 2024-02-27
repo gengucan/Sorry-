@@ -3,8 +3,6 @@ module Constants where
 import Graphics.Gloss
 import Graphics.Gloss.Data.Color
 
--- Added second roll button as well as Player paths to existing code linked in the wiki (https://github.com/svolterra/SnakesandLadders)
-
 -- -- Define the screen width of the game window
 screenWidth :: Int 
 screenWidth = 800
@@ -33,7 +31,7 @@ filledSquare = rectangleSolid cellWidth cellWidth
 outlinedSquare :: Picture 
 outlinedSquare = rectangleWire cellWidth cellWidth
 
--- -- Roll Button
+-- -- RollButton
 rollButtonWidth1 :: Int
 rollButtonWidth1 = 200
 
@@ -52,7 +50,7 @@ rollButtonBottom1 = 100
 rollButtonTop1 :: Int
 rollButtonTop1 = rollButtonBottom1 + rollButtonHeight1
 
--- Roll Button
+--
 rollButtonWidth2 :: Int
 rollButtonWidth2 = 200
 
@@ -92,8 +90,8 @@ lightBlack = light(light black)
 
 -- Indexes for 2d array for the path of Player 1
 player1Path :: [(Int,Int)]
-player1Path = [(8,6),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(9,0),(8,0),(7,0),(6,0),(5,0),(4,0),(3,0),(2,0),(1,0),(0,0),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9),(1,9),(2,9),(3,9),(4,9),(5,9),(6,9),(7,9),(8,9),(9,9),(9,8),(9,7),(8,7),(7,7),(6,7),(5,7)]
+player1Path = [(1,6),(0,6),(0,5),(0,4),(0,3),(0,2),(0,1),(0,0),(1,0),(2,0),(3,0),(4,0),(5,0),(6,0),(7,0),(8,0),(9,0),(9,1),(9,2),(9,3),(9,4),(9,5),(9,6),(9,7),(9,8),(9,9),(8,9),(7,9),(6,9),(5,9),(4,9),(3,9),(2,9),(1,9),(0,9),(0,8),(0,7),(1,7),(2,7),(3,7),(4,7)]
 
 -- Indexes for 2d array for the path of Player 2
 player2Path :: [(Int,Int)]
-player2Path = [(1,3),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9),(1,9),(2,9),(3,9),(4,9),(5,9),(6,9),(7,9),(8,9),(9,9),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(9,0),(8,0),(7,0),(6,0),(5,0),(4,0),(3,0),(2,0),(1,0),(0,0),(0,1),(0,2),(1,2),(2,2),(3,2),(4,2)]
+player2Path = [(8,3),(9,3),(9,4),(9,5),(9,6),(9,7),(9,8),(9,9),(8,9),(7,9),(6,9),(5,9),(4,9),(3,9),(2,9),(1,9),(0,9),(0,8),(0,7),(0,6),(0,5),(0,4),(0,3),(0,2),(0,1),(0,0),(1,0),(2,0),(3,0),(4,0),(5,0),(6,0),(7,0),(8,0),(9,0),(9,1),(9,2),(8,2),(7,2),(6,2),(5,2)]

@@ -4,12 +4,8 @@ module GameLogic where
 import System.Random
 import GameData
 import Constants
--- Used structure from code linked in wiki; altered to fit our game (https://github.com/svolterra/SnakesandLadders)
 
--- takes an x and y and a array of ints and adds y to the value with index x
-addAt :: Int -> Int -> [Int] -> [Int]
 addAt x y = map (\(i,v) -> if (i==x) then y + v else v) . zip [0..]
--- takes an x and y and 2 array of ints representing the player pieces, and returns the pieces at that position in two arrays in a tuple
 piecesAt :: Int -> Int -> [Int] -> [Int] -> ([Int],[Int])
 piecesAt x y p1 p2 = 
     let p1Indexed = zip [0..] p1
