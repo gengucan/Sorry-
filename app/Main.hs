@@ -10,7 +10,7 @@ import Gui
 import GameData
 import GHC.IO
 
--- Kept structure from code linked in wiki; adjusted event handlers to take on rolling for different tokens and new buttons
+-- Kept structure from code linked in wiki; adjusted event handlers to take on rolling for different tokens and new buttons (https://github.com/svolterra/SnakesandLadders)
 
 -- Handles user input based on the coordinates of their mouse
 handleEvent :: Event -> (PlayerState, GameState) -> (PlayerState, GameState)
