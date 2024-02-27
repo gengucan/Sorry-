@@ -3,6 +3,8 @@ module Constants where
 import Graphics.Gloss
 import Graphics.Gloss.Data.Color
 
+-- Added second roll button as well as Player paths to existing code linked in the wiki
+
 -- -- Define the screen width of the game window
 screenWidth :: Int 
 screenWidth = 800
@@ -31,7 +33,7 @@ filledSquare = rectangleSolid cellWidth cellWidth
 outlinedSquare :: Picture 
 outlinedSquare = rectangleWire cellWidth cellWidth
 
--- -- RollButton
+-- -- Roll Button
 rollButtonWidth1 :: Int
 rollButtonWidth1 = 200
 
@@ -50,7 +52,7 @@ rollButtonBottom1 = 100
 rollButtonTop1 :: Int
 rollButtonTop1 = rollButtonBottom1 + rollButtonHeight1
 
---
+-- Roll Button
 rollButtonWidth2 :: Int
 rollButtonWidth2 = 200
 
