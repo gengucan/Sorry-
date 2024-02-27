@@ -4,7 +4,7 @@ module GameLogic where
 import System.Random
 import GameData
 import Constants
--- Used structure from code linked in wiki; altered to fit our game
+-- Used structure from code linked in wiki; altered to fit our game (https://github.com/svolterra/SnakesandLadders)
 
 -- takes an x and y and a array of ints and adds y to the value with index x
 addAt :: Int -> Int -> [Int] -> [Int]
